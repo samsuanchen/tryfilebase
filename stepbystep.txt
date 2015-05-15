@@ -1,0 +1,54 @@
+1. get account "tryfilebase" from www.firebaseio.com
+
+2. goto https://tryfilebase.firebaseio.com/ create data
+
+3. goto ksana2015
+	md tryfilebase
+	cd tryfilebase
+	npm i firebase --save		(save dependency to package.json)
+	npm i -g firebase-tools
+	firebase init
+4. create index.html (also saved as index00.html) as follows:
+	<html><head>
+		<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	</head><body>
+		Hello, firebase
+	</body></html>
+5. goto ksana2015\tryfilebase
+	firebase deploy			(上傳到雲端)
+   開啟網頁 https://tryfilebase.firebaseapp.com 就會見到 Hello, firebase
+6. 另外啟動 local host server 
+	http-server
+   開啟網頁 http://127.0.0.1:8080/ 就會見到 Hello, firebase
+7. add the following to index.html (also saved as index01.html) body:
+	<script>
+		var myFirebaseRef = new Firebase("https://tryfilebase.firebaseio.com/");
+		console.log(myFirebaseRef); // 取得存取雲端 data 的 ref
+	</script>
+8. 重新載入 http://127.0.0.1:8080/ 執行所加的 script 取得存取雲端 data 的 ref
+9. add the following to script (also saved as index02.html) body:
+	<script>
+		var data={
+		  title: "Hello World!",
+		  author: "Firebase",
+		  location: {
+		    city: "San Francisco",
+		    state: "California",
+		    zip: 94103
+		  }
+		}
+		myFirebaseRef.set(data);
+		console.log('data written to firebase'); // data 寫到雲端
+	</script>
+10. 重新載入 http://127.0.0.1:8080/ 執行所加的 script 將 data 寫到雲端
+11. 在網頁 https://tryfilebase.firebaseio.com/ 可見到上傳的 data
+12. 在前述 script 之後 add the following (saved as index03.html) 
+		myFirebaseRef.child("location/city").on("value", function(snapshot) {
+		  console.log(snapshot.val());  // 資料更新即時印出 "San Francisco"
+		});
+		console.log('data read from firebase'); // 可從雲端讀 data
+13. 更改 前述 data 中 city 的資料為 "San Jose"
+14. 即時在 http://127.0.0.1:8080/ console 可見輸出 "San Jose"
+15. 網頁擴充加入 IO 處理 如 index04.html
+16. 嘗試將 jsonData 上傳 (also saved as index05.html) 再由 code.html 下載來 eval
+

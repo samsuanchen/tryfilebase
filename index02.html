@@ -1,0 +1,23 @@
+<html><head>
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+</head><body>
+	<script> /* 0. 1. 2. set data */
+		// 0. say Hello
+		console.log('Hello, firebase!!!!');
+		// 1. get data handle
+		var myFirebaseRef = new Firebase("https://tryfilebase.firebaseio.com/");
+		console.log(myFirebaseRef);
+		// 2. write data
+		var data={
+		  title: "Hello World!",
+		  author: "Firebase",
+		  location: {
+		    city: "San Francisco",
+		    state: "California",
+		    zip: 94103
+		  }
+		}
+		myFirebaseRef.set(data);
+		console.log('data written to firebase');
+	</script>
+</body></html>

@@ -1,0 +1,40 @@
+<html><head>
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+</head><body>
+	<input id='jsonData' placeholder='jsonData' onchange='onChangeData()'/>
+	<div id='log'></div>
+	<script> /* 0. 1. 2. 3. 4. web IO */
+		// 0. say Hello
+		console.log('Hello, firebase!!!!');
+		// 1. get data handle
+		var myFirebaseRef = new Firebase("https://tryfilebase.firebaseio.com/");
+		console.log(myFirebaseRef);
+		log.innerHTML+='1. data handle gotten'; // 4.1 web output
+		// 2. write data
+		var data={
+		  title: "Hello World!",
+		  author: "Sam",
+		  location: {
+		    city: "Taipei",
+		    zip: 100
+		  }
+		}
+		var onChangeData=function(){
+			try{
+				data.location.city=event.target.value; // 4.2 web input
+				myFirebaseRef.set(data);
+			}catch(e){
+				log.innerHTML+='<br>jsonData error! '+e; // 4.3 web output
+			}
+		}
+		console.log('data written to firebase');
+		log.innerHTML+='<br>2. data written to firebase'; // 4.4 web output
+		// 3. real time get data updated
+		myFirebaseRef.child("location/city").on("value", function(snapshot) {
+		  console.log(snapshot.val());  // 資料更新即時印出 "San Francisco"
+		  log.innerHTML+='<br>3.1. data of location.city read: '+snapshot.val(); // 4.5 web output
+		});
+		console.log('now data can be auto read from firebase'); // 可從雲端讀 data
+		log.innerHTML+='<br>3.0. now data can be auto read from firebase'; // 4.6 web output
+	</script>
+</body></html>
