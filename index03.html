@@ -1,4 +1,4 @@
-<html><head>
+<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 </head><body>
 	<script> /* 0. 1. 2. 3. get data */
@@ -21,8 +21,8 @@
 		console.log('data written to firebase');
 		// 3. real time get data updated
 		myFirebaseRef.child("location/city").on("value", function(snapshot) {
-		  console.log(snapshot.val());  // ¸ê®Æ§ó·s§Y®É¦L¥X "San Francisco"
+		  console.log(snapshot.val());  // è³‡æ–™æ›´æ–°å³æ™‚å°å‡º "San Francisco"
 		});
-		console.log('data read from firebase'); // ¥i±q¶³ºİÅª data
+		console.log('data read from firebase'); // å¯å¾é›²ç«¯è®€ data
 	</script>
 </body></html>

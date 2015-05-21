@@ -1,4 +1,4 @@
-<html><head>
+<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 </head><body>
 	<input id='jsonData' placeholder='jsonData' onchange='onChangeData()'/>
@@ -22,7 +22,7 @@
 		var onChangeData=function(){
 			try{
 				//data.location.city=event.target.value; // 4.2 web input
-				data.code=event.target.value;
+				data.location.city=event.target.value;
 				myFirebaseRef.set(data);
 			}catch(e){
 				log.innerHTML+='<br>jsonData error! '+e; // 4.3 web output
@@ -32,10 +32,10 @@
 		log.innerHTML+='<br>2. data written to firebase'; // 4.4 web output
 		// 3. real time get data updated
 		myFirebaseRef.child("location/city").on("value", function(snapshot) {
-		  console.log(snapshot.val());  // ¸ê®Æ§ó·s§Y®É¦L¥X "San Francisco"
+		  console.log(snapshot.val());  // è³‡æ–™æ›´æ–°å³æ™‚å°å‡º "San Francisco"
 		  log.innerHTML+='<br>3.1. data of location.city read: '+snapshot.val(); // 4.5 web output
 		});
-		console.log('now data can be auto read from firebase'); // ¥i±q¶³ºİÅª data
+		console.log('now data can be auto read from firebase'); // å¯å¾é›²ç«¯è®€ data
 		log.innerHTML+='<br>3.0. now data can be auto read from firebase'; // 4.6 web output
 	</script>
 </body></html>

@@ -21,7 +21,8 @@
 		}
 		var onChangeData=function(){
 			try{
-				data.location.city=event.target.value; // 4.2 web input
+				//data.location.city=event.target.value; // 4.2 web input
+				data.code=event.target.value;
 				myFirebaseRef.set(data);
 			}catch(e){
 				log.innerHTML+='<br>jsonData error! '+e; // 4.3 web output
